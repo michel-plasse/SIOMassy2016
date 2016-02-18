@@ -20,6 +20,7 @@ DROP TABLE IF EXISTS note $$
 DROP TABLE IF EXISTS equipe $$
 DROP TABLE IF EXISTS seance $$
 DROP TABLE IF EXISTS matiere_has_formation $$
+DROP TABLE IF EXISTS subsiste $$
 
 
 
@@ -291,18 +292,14 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `agriote_massy2016`.`equipe` (
   `id_equipe` INT NOT NULL AUTO_INCREMENT,
   `id_projet_multi_equipe` INT NOT NULL,
-  `id_membre` INT NOT NULL,
-  PRIMARY KEY (`id_equipe`),
+  `nom` VARCHAR(45) NOT NULL,
+  `date_creation` DATETIME NOT NULL,
+  `logo` VARCHAR(45) NULL,
   INDEX `fk_equipe_projet_multi_equipe1_idx` (`id_projet_multi_equipe` ASC),
-  INDEX `fk_equipe_membre1_idx` (`id_membre` ASC),
+  PRIMARY KEY (`id_equipe`),
   CONSTRAINT `fk_equipe_projet_multi_equipe1`
     FOREIGN KEY (`id_projet_multi_equipe`)
     REFERENCES `agriote_massy2016`.`projet_multi_equipe` (`id_projet_multi_equipe`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_equipe_membre1`
-    FOREIGN KEY (`id_membre`)
-    REFERENCES `agriote_massy2016`.`membre` (`id_membre`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -362,6 +359,30 @@ CREATE TABLE IF NOT EXISTS `agriote_massy2016`.`matiere_has_formation` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `agriote_massy2016`.`subsiste`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `agriote_massy2016`.`subsiste` (
+  `id_equipe` INT NOT NULL,
+  `id_membre` INT NOT NULL,
+  `is_admin` TINYINT(1) NOT NULL,
+  PRIMARY KEY (`id_equipe`, `id_membre`),
+  INDEX `fk_equipe_has_membre_membre1_idx` (`id_membre` ASC),
+  INDEX `fk_equipe_has_membre_equipe1_idx` (`id_equipe` ASC),
+  CONSTRAINT `fk_equipe_has_membre_equipe1`
+    FOREIGN KEY (`id_equipe`)
+    REFERENCES `agriote_massy2016`.`equipe` (`id_equipe`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_equipe_has_membre_membre1`
+    FOREIGN KEY (`id_membre`)
+    REFERENCES `agriote_massy2016`.`membre` (`id_membre`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 SET FOREIGN_KEY_CHECKS=1 $$
 
 
@@ -390,6 +411,7 @@ BEGIN
         TRUNCATE TABLE projet_multi_equipe;
         TRUNCATE TABLE seance;
         TRUNCATE TABLE session;
+        TRUNCATE TABLE subsiste;
         
   -- etc, à vous de compléter
 
@@ -451,9 +473,16 @@ INSERT INTO projet_multi_equipe
 
 
 INSERT INTO equipe 
-(id_equipe, id_projet_multi_equipe, id_membre) VALUES 
-('1', '1', '1');
+(id_equipe, id_projet_multi_equipe, nom, date_creation, logo) VALUES 
+('1', '1', 'COBRA', '2016-02-17', ''),
+('2', '1', 'ADVENGERS', '2016-02-18', '');
 
+
+INSERT INTO `agriote_massy2016`.`subsiste` 
+(`id_equipe`, `id_membre`, `is_admin`) VALUES 
+('1', '1', '1'),
+('1', '2', '0'),
+('2', '3', '1');
 
     -- Valider la transaction
 	  COMMIT;
