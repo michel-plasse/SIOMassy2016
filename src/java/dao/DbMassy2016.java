@@ -19,7 +19,7 @@ public class DbMassy2016 {
   public static final int FOREIGN_KEY_NOT_FOUND = 1452;
 
   protected static final String DRIVER_NAME = "com.mysql.jdbc.Driver";
-  protected static final String DB_NAME = "massy2016";
+  protected static final String DB_NAME = "siomassy2016";
   protected static final String URL = "jdbc:mysql://localhost/" + DB_NAME;
   protected static final String USER = "user_massy2016";
   protected static final String PASSWORD = "pwd_massy2016";

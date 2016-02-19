@@ -387,7 +387,7 @@ BEGIN
     -- insérer B avant A.
     -- Exemple pour la syntaxe :
     INSERT INTO personne
-    (id_personne, nom, prenom, mail, adresse, code_postal, ville, password, telephone, photo, admin) VALUES
+    (id_personne, nom, prenom, mail, adresse, code_postal, ville, password, telephone, photo, est_admin) VALUES
     ('1', 'BANKA', 'Joel', 'bankajoel@yahoo.fr', 'Ciel', '1110', 'Royaume', 'pipi', '0614787928', 'www.miroire.fr', '1');
 
 
@@ -397,3 +397,13 @@ BEGIN
 END$$
 
 CALL reset_massy2016()$$
+
+-- Créer l'utilisateur
+/** Supprime l'utilisateur avant de le créer */
+GRANT USAGE ON siomassy2016.* TO 'user_massy2016'@'localhost' IDENTIFIED BY 'pwd_massy2016'$$
+DROP USER 'user_massy2016'@'localhost'$$
+/** Creer l'utilisateur et lui donner tous les droits */
+CREATE USER 'user_massy2016'@'localhost' IDENTIFIED BY 'pwd_massy2016'$$
+GRANT ALL ON siomassy2016.* TO 'user_massy2016'@'localhost'$$
+GRANT SELECT ON mysql.proc TO 'user_massy2016'@'localhost'$$
+
