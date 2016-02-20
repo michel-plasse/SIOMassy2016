@@ -389,7 +389,55 @@ BEGIN
     INSERT INTO personne
     (id_personne, nom, prenom, mail, adresse, code_postal, ville, password, telephone, photo, est_admin) VALUES
     ('1', 'BANKA', 'Joel', 'bankajoel@yahoo.fr', 'Ciel', '1110', 'Royaume', 'pipi', '0614787928', 'www.miroire.fr', '1');
-
+    INSERT INTO formation
+    (id_formation, intitule, description) VALUES
+    (1,"BTS Assistance Technique d'Ingénieur","Le titulaire de ce diplôme peut exercer des fonctions très variées :études, organisation, animation et formation, recherche et développement, production, gestion de production, gestion commerciale"),
+    (2,"Technicien (ne) en systèmes de surveillance ","Installer, mettre en service et suivre techniquement un chantier d'installation en système de surveillance-intrusion et de vidéoprotection. Maintenir le sytème de surveillance intrusion d'habilitation et de locaux professionnels."),
+    (3,"Bac S.T.I. : génie mécanique, génie électrotechnique","Assistance technique industrielle, Forgeage et estampage,Moulage, Étude d'outillage, Contrôle et régulation, Microtechnique, Maintenance et vente automobiles, Moteurs à combustion interne"),
+    (4,"BTS Services Informatiques aux Organisations (S.I.O.) ","Le titulaire du BTS SIO travaille, soit en tant que collaborateur d’une organisation, soit en en tant qu'intervenant d'une société d’ingénierie et de services informatiques, d'un éditeur de logiciels, d'une société de conseil en technologies."),
+    (5,"Licence Professionnelle Parcours Sécurité des réseaux et systèmes informatiques (LPSRSI)","La formation vise l’acquisition d’une double compétence informatique et juridique dans le domaine de la sécurité des réseaux et des systèmes informatiques."),
+    (6,"Excel debutant","bonne formation pour debuter dans le monde d'office !");
+    INSERT INTO module
+    (id_module,intitule,nb_jours,description) VALUES
+    (1,"Mathematiques",10,"Probabilites, statistiques"),
+    (2,"Automatisme",15,"dans l'aeronautique"),
+    (3,"Physique appliquée",35,"physique gros niveau"),
+    (4,"Organisation industrielle",40,"organiser le fonctionnement"),
+    (5,"Francais",18,"analyse de documents"),
+    (6,"Mathematiques 2",35,"analyse, algebre"),
+    (7,"Anglais",50,"niveau B2"),
+    (8,"dessin technique",35,"dessin a l'aide de dao"),
+    (9,"informatique",60,"javaEE: Application WEB"),
+    (10,"Économie et gestion d'entreprise ",55,"economie de marche et synthese globale"),
+    (11,"excel 1",10,"premiers pas pour faire des tableaux");
+    INSERT INTO module_formation
+    (id_module, id_formation) VALUES
+    (1,1),
+    (2,1),
+    (3,1),
+    (4,1),
+    (6,1),
+    (7,1),
+    (8,1),
+    (3,2),
+    (4,2),
+    (6,2),
+    (8,2),
+    (6,3),
+    (7,3),
+    (1,3),
+    (5,3),
+    (10,3),
+    (1,4),
+    (2,4),
+    (4,4),
+    (6,4),
+    (3,5),
+    (5,5),
+    (6,5),
+    (7,5),
+    (9,5),
+    (11,6);
 
     -- Valider la transaction
 	  COMMIT;
