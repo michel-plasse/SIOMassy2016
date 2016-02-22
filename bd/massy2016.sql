@@ -456,3 +456,12 @@ BEGIN
 END$$
 
 CALL reset_massy2016()$$
+ --- Créer l'utilisateur
+ /** Supprime l'utilisateur avant de le créer */
+ GRANT USAGE ON siomassy2016.* TO 'user_massy2016'@'localhost' IDENTIFIED BY 'pwd_massy2016'$$
+ DROP USER 'user_massy2016'@'localhost'$$
+ /** Creer l'utilisateur et lui donner tous les droits */
+ CREATE USER 'user_massy2016'@'localhost' IDENTIFIED BY 'pwd_massy2016'$$
+ GRANT ALL ON siomassy2016.* TO 'user_massy2016'@'localhost'$$
+ GRANT SELECT ON mysql.proc TO 'user_massy2016'@'localhost'$$
+ 
