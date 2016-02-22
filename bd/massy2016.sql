@@ -388,11 +388,11 @@ BEGIN
     -- Exemple pour la syntaxe :
 		INSERT INTO personne
     (id_personne, nom, prenom, mail, adresse, code_postal, ville, password, telephone, photo, est_admin) VALUES
-    (1, 'BANKA', 'Joel', 'bankajoel@yahoo.fr', 'Ciel', '11510', 'Royaume', 'pipi', '0614787928', 'www.miroire.fr', '1'),
-    (2, 'GUIRASSI', 'Fode', 'sisi-senegal@gmail.com', '3, rue bidon', '95450', 'JeCestPas', '123', '0666835455', 'unephoto', '1'),
-    (3, 'EFEKELE', 'Samuel', 'chacha@gmail.com', '2, rue du poulet-riz', '88600', 'JeuSaitPâs', 'Efekele+1', '0684556678', 'uneimage', '1'),
-    (4, 'RODRIGUO', 'Bilanthini', 'bilan@hotmail.fr', '55, bv de rien', '96700', 'JeScaisTjrPas', 'BilanDeCompetences', '0796451731', 'unefoto', '1'),
-    (5, 'BOISSEAU', 'Jordan', 'jordan@mail.com', '3 bis, rue du gars gentil', '91000', 'JaiPasDidée', '159', '0700700666', 'UnBeauPoster', '1');
+    (1, 'BANKA', 'Joel', 'bankajoel@yahoo.fr', 'Ciel', '11510', 'Royaume', 'pipi', '0614787928', 'www.miroire.fr', 0),
+    (2, 'GUIRASSI', 'Fode', 'sisi-senegal@gmail.com', '3, rue bidon', '95450', 'JeCestPas', '123', '0666835455', 'unephoto', 0),
+    (3, 'EFEKELE', 'Samuel', 'chacha@gmail.com', '2, rue du poulet-riz', '88600', 'JeuSaitPâs', 'Efekele+1', '0684556678', 'uneimage', 0),
+    (4, 'RODRIGUO', 'Bilanthini', 'bilan@hotmail.fr', '55, bv de rien', '96700', 'JeScaisTjrPas', 'BilanDeCompetences', '0796451731', 'unefoto', 0),
+    (5, 'BOISSEAU', 'Jordan', 'jordan@mail.com', '3 bis, rue du gars gentil', '91000', 'JaiPasDidée', '159', '0700700666', 'UnBeauPoster', 0);
     INSERT INTO formation
     (id_formation, intitule, description) VALUES
     (1,"BTS Assistance Technique d'Ingénieur","Le titulaire de ce diplôme peut exercer des fonctions très variées :études, organisation, animation et formation, recherche et développement, production, gestion de production, gestion commerciale"),
