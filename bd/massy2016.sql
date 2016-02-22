@@ -450,6 +450,13 @@ BEGIN
     (4, 5, '2016-11-25', '2017-11-09', 23, '2016-10-19', '2016-11-15'),
     (5, 2, '2017-01-05', '2017-11-02', 18, '2016-11-29', '2016-12-20'),
     (6, 3, '2017-02-10', '2017-12-20', 14, '2017-01-14', '2017-02-01');
+
+ INSERT INTO etat_candidature
+    (id_etat_candidature, intitule) VALUES
+    (1, "en attente"),
+    (2, "validée"),
+    (3, "refusée");
+    
     -- Valider la transaction
 	  COMMIT;
 	END;
