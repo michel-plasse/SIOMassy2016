@@ -43,7 +43,7 @@ ENGINE = InnoDB$$
 
 CREATE TABLE IF NOT EXISTS formation (
   id_formation INT NOT NULL AUTO_INCREMENT,
-  intitule VARCHAR(45) NOT NULL,
+  intitule VARCHAR(100) NOT NULL,
   description VARCHAR(255) NOT NULL,
   PRIMARY KEY (id_formation))
 ENGINE = InnoDB$$
@@ -386,13 +386,13 @@ BEGIN
     -- contraintes d'intégrité référentielles : si A fait référence à B,
     -- insérer B avant A.
     -- Exemple pour la syntaxe :
-    INSERT INTO personne
+		INSERT INTO personne
     (id_personne, nom, prenom, mail, adresse, code_postal, ville, password, telephone, photo, est_admin) VALUES
-    ('1', 'BANKA', 'Joel', 'bankajoel@yahoo.fr', 'Ciel', '11510', 'Royaume', 'pipi', '0614787928', 'www.miroire.fr', '1');
-    ('2', 'GUIRASSI', 'Fode', 'sisi-senegal@gmail.com', '3, rue bidon', '95450', 'JeCestPas', '123', '0666835455', 'unephoto', '1');
-    ('3', 'EFEKELE', 'Samuel', 'chacha@gmail.com', '2, rue du poulet-riz', '88600', 'JeuSaitPâs', 'Efekele+1', '0684556678', 'uneimage', '1');
-    ('4', 'RODRIGUO', 'Bilanthini', 'Bilan@hotmail.fr', '55, bv de rien', '96700', 'JeScaisTjrPas', 'BilanDeCompetences', '0796451731', 'unefoto', '1');
-    ('5', 'BOISSEAU', 'Jordan', 'Jordan@mail.com', '3 bis, rue du gars gentil', '91000', 'JaiPasDidée', '159', '0700700666', 'UnBeauPoster', '1');
+    (1, 'BANKA', 'Joel', 'bankajoel@yahoo.fr', 'Ciel', '11510', 'Royaume', 'pipi', '0614787928', 'www.miroire.fr', '1'),
+    (2, 'GUIRASSI', 'Fode', 'sisi-senegal@gmail.com', '3, rue bidon', '95450', 'JeCestPas', '123', '0666835455', 'unephoto', '1'),
+    (3, 'EFEKELE', 'Samuel', 'chacha@gmail.com', '2, rue du poulet-riz', '88600', 'JeuSaitPâs', 'Efekele+1', '0684556678', 'uneimage', '1'),
+    (4, 'RODRIGUO', 'Bilanthini', 'bilan@hotmail.fr', '55, bv de rien', '96700', 'JeScaisTjrPas', 'BilanDeCompetences', '0796451731', 'unefoto', '1'),
+    (5, 'BOISSEAU', 'Jordan', 'jordan@mail.com', '3 bis, rue du gars gentil', '91000', 'JaiPasDidée', '159', '0700700666', 'UnBeauPoster', '1');
     INSERT INTO formation
     (id_formation, intitule, description) VALUES
     (1,"BTS Assistance Technique d'Ingénieur","Le titulaire de ce diplôme peut exercer des fonctions très variées :études, organisation, animation et formation, recherche et développement, production, gestion de production, gestion commerciale"),
@@ -444,25 +444,15 @@ BEGIN
     (11,6);
     INSERT INTO session
     (id_session, id_formation, date_debut, date_fin, nb_places, date_debut_inscription, date_fin_inscription) VALUES
-    (1, 4, 2016-06-17, 2017-06-12, 15, 2016-05-01, 2016-06-02),
-    (2, 6, 2016-08-22, 2016-10-18, 12, 2016-07-16, 2016-08-11),
-    (3, 1, 2016-10-10, 2017-09-15, 20, 2016-09-01, 2016-09-29),
-    (4, 5, 2016-11-25, 2017-11-09, 23, 2016-10-19, 2016-11-15),
-    (5, 2, 2017-01-05, 2017-11-02, 18, 2016-11-29, 2016-12-20),
-    (1, 3, 2017-02-10, 2017-12-20, 14, 2017-01-14, 2017-02-01);
+    (1, 4, '2016-06-17', '2017-06-12', 15, '2016-05-01', '2016-06-02'),
+    (2, 6, '2016-08-22', '2016-10-18', 12, '2016-07-16', '2016-08-11'),
+    (3, 1, '2016-10-10', '2017-09-15', 20, '2016-09-01', '2016-09-29'),
+    (4, 5, '2016-11-25', '2017-11-09', 23, '2016-10-19', '2016-11-15'),
+    (5, 2, '2017-01-05', '2017-11-02', 18, '2016-11-29', '2016-12-20'),
+    (6, 3, '2017-02-10', '2017-12-20', 14, '2017-01-14', '2017-02-01');
     -- Valider la transaction
 	  COMMIT;
 	END;
 END$$
 
 CALL reset_massy2016()$$
-
--- Créer l'utilisateur
-/** Supprime l'utilisateur avant de le créer */
-GRANT USAGE ON siomassy2016.* TO 'user_massy2016'@'localhost' IDENTIFIED BY 'pwd_massy2016'$$
-DROP USER 'user_massy2016'@'localhost'$$
-/** Creer l'utilisateur et lui donner tous les droits */
-CREATE USER 'user_massy2016'@'localhost' IDENTIFIED BY 'pwd_massy2016'$$
-GRANT ALL ON siomassy2016.* TO 'user_massy2016'@'localhost'$$
-GRANT SELECT ON mysql.proc TO 'user_massy2016'@'localhost'$$
-
