@@ -399,10 +399,10 @@ BEGIN
     (9, 'MBENDA', 'Lionel', 'lionel@greta.fr', '10 allée de bonhomme en pierre', '91000', 'Evry', '357', '07 48 63 14 55', null, 0),
     (10, 'MARC', 'Mickael', 'mickael@agriote.fr', '24 rue de la futaie', '91090', 'Lisses', '951', '07 47 55 12 18 13', null, 0),
     (11, 'JOYEUX', 'Jerome', 'jerome@agriote.fr', '9 rue de Vlaminck', '91350', 'Grigny', 'mdp', '07 37 45 45 11', null, 0),
-    (12, 'MOSHINE', 'Hajar', 'hajar@greta.fr', '10 rue Léonard De Vinci', '91090', 'Lisses', 'motdepasse', '06 99 88 13 13', null, 0)
+    (12, 'MOSHINE', 'Hajar', 'hajar@greta.fr', '10 rue Léonard De Vinci', '91090', 'Lisses', 'motdepasse', '06 99 88 13 13', null, 0),
     (13, 'BOURDET', 'Eric', 'eric@gmail.com', '5 rue Saint Exupéry', '91070', 'Bondoufle', 'pwd', '06 13 54 78 96', null, 0),
     (14, 'GROLEAS', 'Brigitte', 'brigitte@agriote.fr', '6 rue Jean Meremoz', '91080', 'Courcouronnes', 'netbeans', '06 96 85 51 43', null, 1),
-    (15, 'PLASSE', 'Michel', 'michel@greta.fr', '9 rue des Petits Champs', '91100', 'VIllabé', 'eclipse', '06 57 16 83 57', null, 1);
+    (15, 'PLASSE', 'Michel', 'michel@greta.fr', '9 rue des Petits Champs', '91100', 'Villabé', 'eclipse', '06 57 16 83 57', null, 1);
     INSERT INTO formation
     (id_formation, intitule, description) VALUES
     (1,"BTS Assistance Technique d'Ingénieur","Le titulaire de ce diplôme peut exercer des fonctions très variées :études, organisation, animation et formation, recherche et développement, production, gestion de production, gestion commerciale"),
