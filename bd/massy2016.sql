@@ -388,12 +388,21 @@ BEGIN
     -- Exemple pour la syntaxe :
 		INSERT INTO personne
     (id_personne, nom, prenom, mail, adresse, code_postal, ville, password, telephone, photo, est_admin) VALUES
-    (1, 'BANKA', 'Joel', 'bankajoel@yahoo.fr', 'Ciel', '11510', 'Royaume', 'pipi', '0614787928', null, 0),
-    (2, 'GUIRASSI', 'Fode', 'sisi-senegal@gmail.com', '3, rue bidon', '95450', 'JeCestPas', '123', '0666835455', null, 0),
-    (3, 'EFEKELE', 'Samuel', 'chacha@gmail.com', '2, rue du poulet-riz', '88600', 'JeuSaitPâs', 'Efekele+1', '0684556678', null, 0),
-    (4, 'RODRIGUO', 'Bilanthini', 'bilan@hotmail.fr', '55, bv de rien', '96700', 'JeScaisTjrPas', 'BilanDeCompetences', '0796451731', null, 0),
-    (5, 'BOISSEAU', 'Jordan', 'jordan@mail.com', '3 bis, rue du gars gentil', '91000', 'JaiPasDidée', '159', '0700700666', null, 0),
-    (6,'ROUGIER','Dovan','dovan@agriote.fr','15 rue Dieu','75010','Paris','password','0123456789', null,1);
+    (1, 'BANKA', 'Joel', 'bankajoel@yahoo.fr', '7 rue de chateau deau', '91130', 'Ris-Orangis', 'pipi', '06 14 78 79 28', null, 0),
+    (2, 'GUIRASSI', 'Fode', 'sisi-senegal@gmail.com', '1 rue Léon Blum', '91130', 'Ris-Orangis', '123', '06 66 83 54 55', null, 0),
+    (3, 'EFEKELE', 'Samuel', 'chacha@gmail.com', '17 avenue Auguste Plat', '91130', 'Ris-Orangis', 'Efekele+1', '06 84 55 66 78', null, 0),
+    (4, 'RODRIGUO', 'Bilanthini', 'bilan@greta.fr', '10 rue de Bretagne', '91130', 'Ris-Orangis', 'mapoule', '07 96 45 17 31', null, 0),
+    (5, 'BOISSEAU', 'Jordan', 'jordan@mail.com', '1 avenue de la gare', '91130', 'Ris-Orangis', '159', '07 00 70 06 66', null, 0),
+    (6, 'MOREAU', 'Vincent', 'vince@greta.fr', '13 rue de Girouise', '91360', 'Épinay-sur-Orge', '321', '06 35 84 96 32', null, 0),
+    (7, 'ROUGIER', 'Dovan', 'dovan@agriote.fr', '15 rue Dieu', '75010', 'Paris', 'password', '01 23 45 67 89', null, 1),
+    (8, 'PERRIN', 'Sandrine', 'sancrine@greta.fr', '7 place du parc aux lièvres' , '91000', 'Evry', '753', '06 31 25 57 74', null, 0),
+    (9, 'MBENDA', 'Lionel', 'lionel@greta.fr', '10 allée de bonhomme en pierre', '91000', 'Evry', '357', '07 48 63 14 55', null, 0),
+    (10, 'MARC', 'Mickael', 'mickael@agriote.fr', '24 rue de la futaie', '91090', 'Lisses', '951', '07 47 55 12 18 13', null, 0),
+    (11, 'JOYEUX', 'Jerome', 'jerome@agriote.fr', '9 rue de Vlaminck', '91350', 'Grigny', 'mdp', '07 37 45 45 11', null, 0),
+    (12, 'MOSHINE', 'Hajar', 'hajar@greta.fr', '10 rue Léonard De Vinci', '91090', 'Lisses', 'motdepasse', '06 99 88 13 13', null, 0)
+    (13, 'BOURDET', 'Eric', 'eric@gmail.com', '5 rue Saint Exupéry', '91070', 'Bondoufle', 'pwd', '06 13 54 78 96', null, 0),
+    (14, 'GROLEAS', 'Brigitte', 'brigitte@agriote.fr', '6 rue Jean Meremoz', '91080', 'Courcouronnes', 'netbeans', '06 96 85 51 43', null, 1),
+    (15, 'PLASSE', 'Michel', 'michel@greta.fr', '9 rue des Petits Champs', '91100', 'VIllabé', 'eclipse', '06 57 16 83 57', null, 1);
     INSERT INTO formation
     (id_formation, intitule, description) VALUES
     (1,"BTS Assistance Technique d'Ingénieur","Le titulaire de ce diplôme peut exercer des fonctions très variées :études, organisation, animation et formation, recherche et développement, production, gestion de production, gestion commerciale"),
