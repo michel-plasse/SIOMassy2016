@@ -402,7 +402,17 @@ BEGIN
     (12, 'MOSHINE', 'Hajar', 'hajar@greta.fr', '10 rue Léonard De Vinci', '91090', 'Lisses', 'motdepasse', '06 99 88 13 13', null, 0),
     (13, 'BOURDET', 'Eric', 'eric@gmail.com', '5 rue Saint Exupéry', '91070', 'Bondoufle', 'pwd', '06 13 54 78 96', null, 0),
     (14, 'GROLEAS', 'Brigitte', 'brigitte@agriote.fr', '6 rue Jean Meremoz', '91080', 'Courcouronnes', 'netbeans', '06 96 85 51 43', null, 1),
-    (15, 'PLASSE', 'Michel', 'michel@greta.fr', '9 rue des Petits Champs', '91100', 'Villabé', 'eclipse', '06 57 16 83 57', null, 1);
+    (15, 'PLASSE', 'Michel', 'michel@greta.fr', '9 rue des Petits Champs', '91100', 'Villabé', 'eclipse', '06 57 16 83 57', null, 1),
+    (16, 'COURTO', 'Blanche', 'blanche@greta.fr', '5 rue du Louvre', '75001', 'Paris', 'voltaire', '07 88 33 45 14', null, 0),
+    (17, 'DUGLAND', 'Sebastien', 'sebastien@greta.fr', '11 avenue de Breteuil', '75007', 'Paris', 'mdp123', '07 54 14 37 86', null, 0),
+    (18, 'DUPOND', 'Dupond', 'dupond@greta.fr', '15 rue Legendre', '75017', 'Paris', 'dupontpwd', '06 68 97 31 16', null, 0),
+    (19, 'TIN', 'Tin', 'tintin@gmail.com', '2 rue de Belleville', '75020', 'Paris', 'milou', '06 54 57 73 24', null, 0),
+    (20, 'HANOUNA', 'Cyril', 'cyril@greta.fr', '9 rue du Chevaleret', '75013' ,'Paris', 'baba', '06 13 91 67 35', null, 0),
+    (21, 'LOUVIN', 'Gérard', 'gérard@agriote.fr', '7 rue Hardy', '78000', 'Versailles', 'tulavus', '06 81 68 15 73', null, 0),
+    (22, 'COMBAL', 'Camille', 'camille@gmail.com', '8 rue Saint-Louis', '78300', 'Poissy', 'cyrilhanouna', '07 13 91 35 67', null, 0),
+    (23, 'DEPP', 'Johnny', 'johnny@greta.fr', '17 rue Edouard Robert', '91290', 'Arpajon', 'rhum', '06 97 64 31 28', null, 0),
+    (24, 'BENATTIA', 'Nabilla', 'nabilla@free.fr', '23 rue Victor Hugo', '91290', 'Arpajon', 'allo', '06 11 22 33 44', null, 0),
+    (25, 'DIESIEL', 'Vin', 'vin@gmail.com', '3 rue Docteur Roux', '91160', 'Longjumeau', 'babysitor', '07 31 46 79 58', null, 0);
     INSERT INTO formation
     (id_formation, intitule, description) VALUES
     (1,"BTS Assistance Technique d'Ingénieur","Le titulaire de ce diplôme peut exercer des fonctions très variées :études, organisation, animation et formation, recherche et développement, production, gestion de production, gestion commerciale"),
