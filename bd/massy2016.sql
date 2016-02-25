@@ -477,6 +477,14 @@ BEGIN
     (2, "validée"),
     (3, "refusée");
     
+    INSERT INTO formateur
+    (id_formateur,site_web)VALUES
+    (14,"www.mplasse.com"),
+    (15,"www.algob.fr"),
+    (23,""),
+    (24,""),
+    (18,"");
+    
     -- Valider la transaction
 	  COMMIT;
 	END;
