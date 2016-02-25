@@ -485,6 +485,11 @@ BEGIN
     (24,""),
     (18,"");
     
+    INSERT INTO projet
+    (id_projet,id_formateur,id_session,nom,description,date_creation,date_fin)VALUES
+    (1,14,1,"Project Code source","Le but de ce projet c'est de tester github",'2016-09-12','2016-10-15 17:00'),
+    (2,14,3,"Partager le réseau","Ce projet consiste à créer un réseau social par équipe",'2016-12-12','2017-02-15 18:30'),
+    (3,24,1,"Communication","Savoir communiquer en bon français",'2017-03-12','2017-04-22 13:30');
     -- Valider la transaction
 	  COMMIT;
 	END;
