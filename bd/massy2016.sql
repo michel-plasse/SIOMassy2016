@@ -94,6 +94,7 @@ ENGINE = InnoDB$$
 CREATE TABLE IF NOT EXISTS bilan (
   id_bilan INT NOT NULL AUTO_INCREMENT,
   id_session INT NOT NULL,
+  date_effet DATE NOT NULL,
   PRIMARY KEY (id_bilan),
   INDEX fk_bilan_session1_idx (id_session ASC),
   CONSTRAINT fk_bilan_session1
@@ -490,6 +491,18 @@ BEGIN
     (1,14,1,"Project Code source","Le but de ce projet c'est de tester github",'2016-09-12','2016-10-15 17:00'),
     (2,14,3,"Partager le réseau","Ce projet consiste à créer un réseau social par équipe",'2016-12-12','2017-02-15 18:30'),
     (3,24,1,"Communication","Savoir communiquer en bon français",'2017-03-12','2017-04-22 13:30');
+    
+	INSERT INTO bilan 
+    (id_bilan,id_session,date_effet) VALUES
+    (1,1,'2016-12-01'),
+    (2,1,'2017-06-01'),
+    (3,2,'2016-12-22'),
+	(4,2,'2017-12-24');
+    
+    
+    
+    
+    
     -- Valider la transaction
 	  COMMIT;
 	END;
