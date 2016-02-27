@@ -486,6 +486,17 @@ BEGIN
     (24,""),
     (18,"");
     
+    INSERT INTO intervenant
+    (id_module, id_personne) VALUES
+    (1,14),
+    (2,15),
+    (3,23),
+    (4,24),
+    (6,23),
+    (9,14),
+    (9,15),
+    (5,18);
+    
     INSERT INTO projet
     (id_projet,id_formateur,id_session,nom,description,date_creation,date_fin)VALUES
     (1,14,1,"Project Code source","Le but de ce projet c'est de tester github",'2016-09-12','2016-10-15 17:00'),
