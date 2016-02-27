@@ -497,6 +497,14 @@ BEGIN
     (9,15),
     (5,18);
     
+    INSERT INTO seance
+    (id_seance, id_module, id_session, id_formateur, jour) VAlUES
+    (1,9,4,14,'2016-11-25'),
+    (2,9,4,15,'2016-11-26'),
+    (3,3,3,23,'2016-11-25'),
+    (4,5,6,18,'2017-02-13'),
+    (5,4,5,24,'2017-01-06');
+    
     INSERT INTO projet
     (id_projet,id_formateur,id_session,nom,description,date_creation,date_fin)VALUES
     (1,14,1,"Project Code source","Le but de ce projet c'est de tester github",'2016-09-12','2016-10-15 17:00'),
