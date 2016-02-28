@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS personne (
   code_postal VARCHAR(5) NOT NULL,
   ville VARCHAR(45) NOT NULL,
   password VARCHAR(45) NOT NULL,
-  telephone INT NOT NULL,
+  telephone VARCHAR(45) NOT NULL,
   photo VARCHAR(45) NULL,
   est_admin TINYINT(1) NOT NULL DEFAULT false,
   PRIMARY KEY (id_personne))
