@@ -511,13 +511,19 @@ BEGIN
     (2,14,3,"Partager le réseau","Ce projet consiste à créer un réseau social par équipe",'2016-12-12','2017-02-15 18:30'),
     (3,24,1,"Communication","Savoir communiquer en bon français",'2017-03-12','2017-04-22 13:30');
     
-	INSERT INTO bilan 
+    INSERT INTO bilan 
     (id_bilan,id_session,date_effet) VALUES
     (1,1,'2016-12-01'),
     (2,1,'2017-06-01'),
     (3,2,'2016-12-22'),
-	(4,2,'2017-12-24');
-    
+    (4,2,'2017-12-24');
+
+    INSERT INTO bulletin
+    (id_personne, id_bilan, commentaire) VALUES
+    (1,1,"Joel devrait s'investir plus en classe plutot que de s'occuper du PSG"),
+    (2,1,"Fodé est un élève très investit"),
+    (3,1,"Samuel fournit beaucoup d'effort! Continuez ainsi"),
+    (4,1,"Bilanthini est l'élève la plus agréable avec laquelle il m'a été donné de travailler");
     
     
     
