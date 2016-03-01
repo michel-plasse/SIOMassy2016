@@ -531,7 +531,7 @@ BEGIN
     (2,2,2,23,'2016-04-15',"révisez vos schéma structurels "),
     (3,3,3,24,'2016-05-18',"U=RxI"),
     (4,4,4,15,'2016-06-25',"révisez les suites "),
-    (5,5,5,23,'2017-02-05',"écriture perso tout les auterus s'accordetn à dire..."),
+    (5,5,5,23,'2017-02-05',"écriture perso tout les auteurs s'accordetn à dire..."),
     (6,6,6,15,'2017-05-06',"bon courage"),
     (7,1,7,18,'2016-04-12',"calm down !!! "),
     (8,1,9,14,'2016-03-20',"révisez le JEE"),
