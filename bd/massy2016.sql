@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS personne (
   code_postal VARCHAR(5) NOT NULL,
   ville VARCHAR(45) NOT NULL,
   password VARCHAR(45) NOT NULL,
-  telephone INT NOT NULL,
+  telephone VARCHAR(45) NOT NULL,
   photo VARCHAR(45) NULL,
   est_admin TINYINT(1) NOT NULL DEFAULT false,
   PRIMARY KEY (id_personne))
@@ -94,6 +94,7 @@ ENGINE = InnoDB$$
 CREATE TABLE IF NOT EXISTS bilan (
   id_bilan INT NOT NULL AUTO_INCREMENT,
   id_session INT NOT NULL,
+  date_effet DATE NOT NULL,
   PRIMARY KEY (id_bilan),
   INDEX fk_bilan_session1_idx (id_session ASC),
   CONSTRAINT fk_bilan_session1
@@ -388,11 +389,31 @@ BEGIN
     -- Exemple pour la syntaxe :
 		INSERT INTO personne
     (id_personne, nom, prenom, mail, adresse, code_postal, ville, password, telephone, photo, est_admin) VALUES
-    (1, 'BANKA', 'Joel', 'bankajoel@yahoo.fr', 'Ciel', '11510', 'Royaume', 'pipi', '0614787928', 'www.miroire.fr', '1'),
-    (2, 'GUIRASSI', 'Fode', 'sisi-senegal@gmail.com', '3, rue bidon', '95450', 'JeCestPas', '123', '0666835455', 'unephoto', '1'),
-    (3, 'EFEKELE', 'Samuel', 'chacha@gmail.com', '2, rue du poulet-riz', '88600', 'JeuSaitPâs', 'Efekele+1', '0684556678', 'uneimage', '1'),
-    (4, 'RODRIGUO', 'Bilanthini', 'bilan@hotmail.fr', '55, bv de rien', '96700', 'JeScaisTjrPas', 'BilanDeCompetences', '0796451731', 'unefoto', '1'),
-    (5, 'BOISSEAU', 'Jordan', 'jordan@mail.com', '3 bis, rue du gars gentil', '91000', 'JaiPasDidée', '159', '0700700666', 'UnBeauPoster', '1');
+    (1, 'BANKA', 'Joel', 'bankajoel@yahoo.fr', '7 rue de chateau deau', '91130', 'Ris-Orangis', 'pipi', '06 14 78 79 28', null, 0),
+    (2, 'GUIRASSI', 'Fode', 'sisi-senegal@gmail.com', '1 rue Léon Blum', '91130', 'Ris-Orangis', '123', '06 66 83 54 55', null, 0),
+    (3, 'EFEKELE', 'Samuel', 'chacha@gmail.com', '17 avenue Auguste Plat', '91130', 'Ris-Orangis', 'Efekele+1', '06 84 55 66 78', null, 0),
+    (4, 'RODRIGUO', 'Bilanthini', 'bilan@greta.fr', '10 rue de Bretagne', '91130', 'Ris-Orangis', 'mapoule', '07 96 45 17 31', null, 0),
+    (5, 'BOISSEAU', 'Jordan', 'jordan@mail.com', '1 avenue de la gare', '91130', 'Ris-Orangis', '159', '07 00 70 06 66', null, 0),
+    (6, 'MOREAU', 'Vincent', 'vince@greta.fr', '13 rue de Girouise', '91360', 'Épinay-sur-Orge', '321', '06 35 84 96 32', null, 0),
+    (7, 'ROUGIER', 'Dovan', 'dovan@agriote.fr', '15 rue Dieu', '75010', 'Paris', 'password', '01 23 45 67 89', null, 1),
+    (8, 'PERRIN', 'Sandrine', 'sancrine@greta.fr', '7 place du parc aux lièvres' , '91000', 'Evry', '753', '06 31 25 57 74', null, 0),
+    (9, 'MBENDA', 'Lionel', 'lionel@greta.fr', '10 allée de bonhomme en pierre', '91000', 'Evry', '357', '07 48 63 14 55', null, 0),
+    (10, 'MARC', 'Mickael', 'mickael@agriote.fr', '24 rue de la futaie', '91090', 'Lisses', '951', '07 47 55 12 18 13', null, 0),
+    (11, 'JOYEUX', 'Jerome', 'jerome@agriote.fr', '9 rue de Vlaminck', '91350', 'Grigny', 'mdp', '07 37 45 45 11', null, 0),
+    (12, 'MOSHINE', 'Hajar', 'hajar@greta.fr', '10 rue Léonard De Vinci', '91090', 'Lisses', 'motdepasse', '06 99 88 13 13', null, 0),
+    (13, 'BOURDET', 'Eric', 'eric@gmail.com', '5 rue Saint Exupéry', '91070', 'Bondoufle', 'pwd', '06 13 54 78 96', null, 0),
+    (14, 'GROLEAS', 'Brigitte', 'brigitte@agriote.fr', '6 rue Jean Meremoz', '91080', 'Courcouronnes', 'netbeans', '06 96 85 51 43', null, 1),
+    (15, 'PLASSE', 'Michel', 'michel@greta.fr', '9 rue des Petits Champs', '91100', 'Villabé', 'eclipse', '06 57 16 83 57', null, 1),
+    (16, 'COURTO', 'Blanche', 'blanche@greta.fr', '5 rue du Louvre', '75001', 'Paris', 'voltaire', '07 88 33 45 14', null, 0),
+    (17, 'DUGLAND', 'Sebastien', 'sebastien@greta.fr', '11 avenue de Breteuil', '75007', 'Paris', 'mdp123', '07 54 14 37 86', null, 0),
+    (18, 'DUPOND', 'Dupond', 'dupond@greta.fr', '15 rue Legendre', '75017', 'Paris', 'dupontpwd', '06 68 97 31 16', null, 0),
+    (19, 'TIN', 'Tin', 'tintin@gmail.com', '2 rue de Belleville', '75020', 'Paris', 'milou', '06 54 57 73 24', null, 0),
+    (20, 'HANOUNA', 'Cyril', 'cyril@greta.fr', '9 rue du Chevaleret', '75013' ,'Paris', 'baba', '06 13 91 67 35', null, 0),
+    (21, 'LOUVIN', 'Gérard', 'gérard@agriote.fr', '7 rue Hardy', '78000', 'Versailles', 'tulavus', '06 81 68 15 73', null, 0),
+    (22, 'COMBAL', 'Camille', 'camille@gmail.com', '8 rue Saint-Louis', '78300', 'Poissy', 'cyrilhanouna', '07 13 91 35 67', null, 0),
+    (23, 'DEPP', 'Johnny', 'johnny@greta.fr', '17 rue Edouard Robert', '91290', 'Arpajon', 'rhum', '06 97 64 31 28', null, 0),
+    (24, 'BENATTIA', 'Nabilla', 'nabilla@free.fr', '23 rue Victor Hugo', '91290', 'Arpajon', 'allo', '06 11 22 33 44', null, 0),
+    (25, 'DIESIEL', 'Vin', 'vin@gmail.com', '3 rue Docteur Roux', '91160', 'Longjumeau', 'babysitor', '07 31 46 79 58', null, 0);
     INSERT INTO formation
     (id_formation, intitule, description) VALUES
     (1,"BTS Assistance Technique d'Ingénieur","Le titulaire de ce diplôme peut exercer des fonctions très variées :études, organisation, animation et formation, recherche et développement, production, gestion de production, gestion commerciale"),
@@ -450,6 +471,63 @@ BEGIN
     (4, 5, '2016-11-25', '2017-11-09', 23, '2016-10-19', '2016-11-15'),
     (5, 2, '2017-01-05', '2017-11-02', 18, '2016-11-29', '2016-12-20'),
     (6, 3, '2017-02-10', '2017-12-20', 14, '2017-01-14', '2017-02-01');
+
+ INSERT INTO etat_candidature
+    (id_etat_candidature, intitule) VALUES
+    (1, "en attente"),
+    (2, "validée"),
+    (3, "refusée");
+    
+    INSERT INTO formateur
+    (id_formateur,site_web)VALUES
+    (14,"www.mplasse.com"),
+    (15,"www.algob.fr"),
+    (23,""),
+    (24,""),
+    (18,"");
+    
+    INSERT INTO intervenant
+    (id_module, id_personne) VALUES
+    (1,14),
+    (2,15),
+    (3,23),
+    (4,24),
+    (6,23),
+    (9,14),
+    (9,15),
+    (5,18);
+    
+    INSERT INTO seance
+    (id_seance, id_module, id_session, id_formateur, jour) VAlUES
+    (1,9,4,14,'2016-11-25'),
+    (2,9,4,15,'2016-11-26'),
+    (3,3,3,23,'2016-11-25'),
+    (4,5,6,18,'2017-02-13'),
+    (5,4,5,24,'2017-01-06');
+    
+    INSERT INTO projet
+    (id_projet,id_formateur,id_session,nom,description,date_creation,date_fin)VALUES
+    (1,14,1,"Project Code source","Le but de ce projet c'est de tester github",'2016-09-12','2016-10-15 17:00'),
+    (2,14,3,"Partager le réseau","Ce projet consiste à créer un réseau social par équipe",'2016-12-12','2017-02-15 18:30'),
+    (3,24,1,"Communication","Savoir communiquer en bon français",'2017-03-12','2017-04-22 13:30');
+    
+    INSERT INTO bilan 
+    (id_bilan,id_session,date_effet) VALUES
+    (1,1,'2016-12-01'),
+    (2,1,'2017-06-01'),
+    (3,2,'2016-12-22'),
+    (4,2,'2017-12-24');
+
+    INSERT INTO bulletin
+    (id_personne, id_bilan, commentaire) VALUES
+    (1,1,"Joel devrait s'investir plus en classe plutot que de s'occuper du PSG"),
+    (2,1,"Fodé est un élève très investit"),
+    (3,1,"Samuel fournit beaucoup d'effort! Continuez ainsi"),
+    (4,1,"Bilanthini est l'élève la plus agréable avec laquelle il m'a été donné de travailler");
+    
+    
+    
+    
     -- Valider la transaction
 	  COMMIT;
 	END;
