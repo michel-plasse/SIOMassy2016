@@ -539,7 +539,7 @@ BEGIN
 
 INSERT INTO candidature
     (id_membre,id_session,id_etat_candidature,date_candidature) VALUES
-    (1,1,1,'2016-02-17'),
+    (1,1,2,'2016-02-17'),
     (2,2,1,'2016-03-20'),
     (3,3,2,'2016-05-12'),
     (4,4,2,'2016-06-12'),
