@@ -239,7 +239,7 @@ ENGINE = InnoDB$$
 CREATE TABLE IF NOT EXISTS equipe (
   id_equipe INT NOT NULL AUTO_INCREMENT,
   id_projet INT NOT NULL,
-  date_creation DATETIME NOT NULL,
+  date_creation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id_equipe),
   INDEX fk_equipe_projet_multi_equipe1_idx (id_projet ASC),
   CONSTRAINT fk_equipe_projet
@@ -558,6 +558,24 @@ INSERT INTO candidature
     (17,5,2,'2016-08-13'),
     (18,6,3,'2016-09-01'),
     (19,1,1,'2016-10-20');
+
+INSERT INTO equipe
+    (id_equipe, id_projet) VALUES 
+    ('1', '1'),
+    ('2', '1'),
+    ('3', '1');
+
+INSERT INTO membre 
+    (id_equipe, id_personne, est_createur) VALUES 
+    ('1', '1', '1'),
+    ('1', '2', '0'),
+    ('1', '3', '0'),
+    ('2', '4', '1'),
+    ('2', '5', '0'),
+    ('2', '6', '0'),
+    ('3', '7', '1');
+
+
    
     
     -- Valider la transaction
