@@ -338,7 +338,32 @@ CREATE TABLE IF NOT EXISTS membre (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB$$
 
+---- Vue Stagiaire
 
+DROP VIEW IF EXISTS stagiaire $$
+CREATE VIEW stagiaire AS
+    SELECT 
+        p.id_personne AS id_personne,
+        nom,
+        prenom,
+        mail,
+        adresse,
+        code_postal,
+        ville,
+        password,
+        telephone,
+        photo,
+        est_admin,
+        id_session,
+        date_candidature
+    FROM
+        candidature c
+		INNER JOIN personne p 
+		ON p.id_personne = c.id_membre
+    WHERE
+        id_etat_candidature = 2 $$
+
+---- Fin vue
 
 
 DROP PROCEDURE IF EXISTS reset_massy2016 $$
