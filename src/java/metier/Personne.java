@@ -2,16 +2,10 @@ package metier;
 
 import java.util.Objects;
 
-/**
- * Membre de l'intranet : candidat, stagiaire, formateur, administration
- * @author plasse
- */
-import java.util.Objects;
 
-
-public class Membre {
+public class Personne {
     
-    private String login;
+    private String mail;//sert de login
     private String password;
     private String tel;
     private String nom;
@@ -19,19 +13,22 @@ public class Membre {
     private String ville;
     private String adresse;
     private String codePostal;
+    
+    private String photo;//est actuellement une url
+    private boolean est_admin = false;
 
-    public Membre(String login, String password) {
-        this.login = login;
+    public Personne(String mail, String password) {
+        this.mail = mail;
         this.password = password;
     }
 
-    public Membre() {
+    public Personne() {
         
     }
 
-    public Membre(String login, String password, String tel, String nom, String prenom, String ville, 
-            String adresse, String codePostal) {
-        this.login = login;
+    public Personne(String mail, String password, String tel, String nom, String prenom, String ville, 
+            String adresse, String codePostal, String photo) {
+        this.mail = mail;
         this.password = password;
         this.tel = tel;
         this.nom = nom;
@@ -39,11 +36,12 @@ public class Membre {
         this.ville = ville;
         this.adresse = adresse;
         this.codePostal = codePostal;
+        this.photo = photo;
     }
     
 
-    public String getLogin() {
-        return login;
+    public String getMail() {
+        return mail;
     }
 
     public String getPassword() {
@@ -73,9 +71,13 @@ public class Membre {
     public String getCodePostal() {
         return codePostal;
     }
+    
+    public String getPhoto(){
+        return photo;
+    }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public void setPassword(String password) {
@@ -104,13 +106,17 @@ public class Membre {
 
     public void setCodePostal(String codePostal) {
         this.codePostal = codePostal;
-    } 
+    }
+    
+    public void setPhoto(String photo){
+        this.photo = photo;
+    }
     
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.login);
+        hash = 37 * hash + Objects.hashCode(this.mail);
         hash = 37 * hash + Objects.hashCode(this.password);
         hash = 37 * hash + Objects.hashCode(this.tel);
         return hash;
@@ -124,8 +130,8 @@ public class Membre {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Membre other = (Membre) obj;
-        if (!Objects.equals(this.login, other.login)) {
+        final Personne other = (Personne) obj;
+        if (!Objects.equals(this.mail, other.mail)) {
             return false;
         }
         if (!Objects.equals(this.password, other.password)) {
@@ -137,10 +143,4 @@ public class Membre {
         return true;
     }
     
-    
-    
 }
-//  public String toString() {
-//    return "Membre{" + "login=" + login + ", password=" + password + '}';
-//  }
-
