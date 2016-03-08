@@ -588,7 +588,10 @@ INSERT INTO equipe
     (id_equipe, id_projet) VALUES 
     ('1', '1'),
     ('2', '1'),
-    ('3', '1');
+    ('3', '1'),
+    ('4', '2'),
+    ('5', '2'),
+    ('6', '3');
 
 INSERT INTO membre 
     (id_equipe, id_personne, est_createur) VALUES 
@@ -598,7 +601,13 @@ INSERT INTO membre
     ('2', '4', '1'),
     ('2', '5', '0'),
     ('2', '6', '0'),
-    ('3', '7', '1');
+    ('3', '7', '1'),
+    ('4', '2', '1'),
+    ('4', '5', '0'),
+    ('4', '7', '0'),
+    ('5', '9', '1'),
+    ('6', '1', '1'),
+    ('6', '6', '0');
 
 INSERT INTO note
     (id_evaluation, id_personne, note) VALUES
