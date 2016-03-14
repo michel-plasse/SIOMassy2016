@@ -1,6 +1,6 @@
 package dao;
 
-import metier.Membre;
+import metier.Personne;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import metier.Membre;
+import metier.Personne;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,17 +39,17 @@ public class PersonneDAO {
         ordre.setString(2, password);
         ResultSet rs = ordre.executeQuery();
         if (rs.next()) {
-            result = new Membre(login, password);
+            result = new Personne(login, password);
         }
 
         return result;
     }
     
-    public static void insert(Membre membre) throws SQLException{
+    public static void insert(Personne personne) throws SQLException{
         
-        String sql = "INSERT INTO membre(login, password, tel, nom, prenom, ville, adresse, codePostal) VALUES "
-                + "('"+membre.getLogin() +"', '"+ membre.getPassword()+"', '"+ membre.getTel() +"', '"+ membre.getNom() +"', '"
-                      +membre.getPrenom()+"', '"+membre.getVille()+"', '"+membre.getAdresse()+"', '"+membre.getCodePostal()+"')";
+        String sql = "INSERT INTO personne(mail, password, telephone, nom, prenom, ville, adresse, code_postal) VALUES "
+                + "('"+personne.getMail() +"', '"+personne.getPassword()+"', '"+ personne.getTel() +"', '"+ personne.getNom() +"', '"
+                +personne.getPrenom()+"', '"+personne.getVille()+"', '"+personne.getAdresse()+"', '"+personne.getCodePostal()+"')";
         System.out.println(sql);
         Connection connection = DbMassy2016.getConnection();
         Statement ordre = connection.createStatement();
@@ -58,9 +58,9 @@ public class PersonneDAO {
         connection.close();
     }
 
-    public static List<Membre> getAll() throws SQLException{
+    public static List<Personne> getAll() throws SQLException{
         
-        List<Membre> result = new ArrayList<Membre>();
+        List<Personne> result = new ArrayList<Personne>();
         String sql = "SELECT * FROM membre ORDER BY login";
         
         System.out.println(sql);
@@ -70,7 +70,7 @@ public class PersonneDAO {
         ResultSet rs = ordre.executeQuery(sql);
         
         while(rs.next()){
-            Membre member = new Membre(rs.getString("login"),rs.getString("password"));
+            Personne member = new Personne(rs.getString("login"),rs.getString("password"));
             result.add(member);
         }
         ordre.close();
