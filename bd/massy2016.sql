@@ -438,7 +438,12 @@ BEGIN
     (22, 'COMBAL', 'Camille', 'camille@gmail.com', '8 rue Saint-Louis', '78300', 'Poissy', 'cyrilhanouna', '07 13 91 35 67', null, 0),
     (23, 'DEPP', 'Johnny', 'johnny@greta.fr', '17 rue Edouard Robert', '91290', 'Arpajon', 'rhum', '06 97 64 31 28', null, 0),
     (24, 'BENATTIA', 'Nabilla', 'nabilla@free.fr', '23 rue Victor Hugo', '91290', 'Arpajon', 'allo', '06 11 22 33 44', null, 0),
-    (25, 'DIESIEL', 'Vin', 'vin@gmail.com', '3 rue Docteur Roux', '91160', 'Longjumeau', 'babysitor', '07 31 46 79 58', null, 0);
+    (25, 'DIESIEL', 'Vin', 'vin@gmail.com', '3 rue Docteur Roux', '91160', 'Longjumeau', 'babysitor', '07 31 46 79 58', null, 0),
+    (26, 'KABAN', 'Joel', 'joelk@gmail.com', '10 Rue du Heaume', '78660', 'Ablis', 'docteur', '01 69 38 38 54', null, 0),
+    (27, 'DELARTE', 'Platini', 'platini@gmail.com', '5 bis avenue Maurice Berteaux','78570', 'ANDRESY', 'doc', '01 69 47 58 90', null, 0),
+    (28, 'ANGE', 'Gabriel', 'gabriel@gmail.com', '40 rue Division Leclerc', '78830', 'Bonnelles', 'gabi', '01 69 36 94 94', null, 0),
+    (29, 'MCEE', 'Maxwell', 'maxwell@gmail.com', '5 rue Alexis Carrel', '78530', 'Buc', 'nonmaisattendez', '01 69 47 73 57', null, 0),
+    (30, 'HALLIWELL', 'Phoebe', 'charmed@gmail.com', '14 avenue Guy de Maupassant', 'Chatou', 'balthazar', '01 69 30 19 57', null, 0);
     INSERT INTO formation
     (id_formation, intitule, description) VALUES
     (1,"BTS Assistance Technique d'Ingénieur","Le titulaire de ce diplôme peut exercer des fonctions très variées :études, organisation, animation et formation, recherche et développement, production, gestion de production, gestion commerciale"),
