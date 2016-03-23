@@ -629,6 +629,11 @@ INSERT INTO note
     (3, 3, 10),
     (3, 4, 0);
 
+INSERT INTO ligne_bulletin
+(id_formateur, commentaire, id_personne, id_bilan, id_module) VALUES 
+(14,"Poursuivez vos efforts",1,1,9),
+(15,"Coninuez ainsi",1,1,2);
+
 
    
     
