@@ -640,14 +640,14 @@ INSERT INTO note
     (3, 7, 17),
     (4, 8, 10),
     (4, 9, 9),
-    (4, 10 17),
+    (4, 10, 17),
     (4, 11, 5),
     (4, 12, 11),
     (5, 8, 13),
     (5, 9, 12),
     (5, 10, 10),
     (5, 11, 9),
-    (5, 12, 13),
+    (5, 12, 13);
 
 INSERT INTO ligne_bulletin
 (id_formateur, commentaire, id_personne, id_bilan, id_module) VALUES 
