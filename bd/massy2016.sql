@@ -443,8 +443,8 @@ BEGIN
     (27, 'DELARTE', 'Platini', 'platini@gmail.com', '5 bis avenue Maurice Berteaux','78570', 'ANDRESY', 'doc', '01 69 47 58 90', null, 0),
     (28, 'ANGE', 'Gabriel', 'gabriel@gmail.com', '40 rue Division Leclerc', '78830', 'Bonnelles', 'gabi', '01 69 36 94 94', null, 0),
     (29, 'MCEE', 'Maxwell', 'maxwell@gmail.com', '5 rue Alexis Carrel', '78530', 'Buc', 'nonmaisattendez', '01 69 47 73 57', null, 0),
-    (30, 'HALLIWELL', 'Phoebe', 'charmed@gmail.com', '14 avenue Guy de Maupassant', 'Chatou', 'balthazar', '01 69 30 19 57', null, 0),
-    (31, 'ADMIN', 'admin', 'admin@mail.com', '1 boulevard de ladministrateur', 'Admin', 'admin', '01 69 00 00 00', null, 1);
+    (30, 'HALLIWELL', 'Phoebe', 'charmed@gmail.com', '14 avenue Guy de Maupassant', '78000', 'Chatou', 'balthazar', '01 69 30 19 57', null, 0),
+    (31, 'ADMIN', 'admin', 'admin@mail.com', '1 boulevard de ladministrateur', '10020','Admin', 'admin', '01 69 00 00 00', null, 1);
     INSERT INTO formation
     (id_formation, intitule, description) VALUES
     (1,"BTS Assistance Technique d'Ingénieur","Le titulaire de ce diplôme peut exercer des fonctions très variées :études, organisation, animation et formation, recherche et développement, production, gestion de production, gestion commerciale"),
@@ -653,3 +653,11 @@ CALL reset_massy2016()$$
  GRANT ALL ON siomassy2016.* TO 'user_massy2016'@'localhost'$$
  GRANT SELECT ON mysql.proc TO 'user_massy2016'@'localhost'$$
  
+-- Declencheur equipe--
+
+DROP TRIGGER IF EXISTS after_create_equipe $$
+CREATE TRIGGER after_create_equipe AFTER INSERT
+ON equipe FOR EACH ROW
+BEGIN
+	INSERT INTO membre VALUES (NEW.id_equipe, 1, 1);
+END $$
