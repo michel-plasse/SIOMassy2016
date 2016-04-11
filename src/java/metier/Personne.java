@@ -13,9 +13,12 @@ public class Personne {
     private String ville;
     private String adresse;
     private String codePostal;
+    private int idPersonne;
     
-    private String photo;//est actuellement une url
-    private boolean est_admin = false;
+    //Adresse a = new Adresse();
+    
+    private String photo;//est censé être actuellement une url (pour moi)
+    private boolean admin = false;
 
     public Personne(String mail, String password) {
         this.mail = mail;
@@ -26,8 +29,14 @@ public class Personne {
         
     }
 
-    public Personne(String mail, String password, String tel, String nom, String prenom, String ville, 
-            String adresse, String codePostal, String photo) {
+    public Personne(String nom, String prenom, int idPersonne) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.idPersonne = idPersonne;
+    }
+
+    public Personne(String mail, String password, String tel, String nom,
+            String prenom, String ville, String adresse, String codePostal) {
         this.mail = mail;
         this.password = password;
         this.tel = tel;
@@ -37,8 +46,7 @@ public class Personne {
         this.adresse = adresse;
         this.codePostal = codePostal;
         this.photo = photo;
-    }
-    
+    } 
 
     public String getMail() {
         return mail;
@@ -74,7 +82,16 @@ public class Personne {
     
     public String getPhoto(){
         return photo;
+    }   
+
+    public boolean isAdmin() {
+        return admin;
     }
+
+    public int getIdPersonne() {
+        return idPersonne;
+    }
+    
 
     public void setMail(String mail) {
         this.mail = mail;
@@ -110,6 +127,10 @@ public class Personne {
     
     public void setPhoto(String photo){
         this.photo = photo;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
     
 
