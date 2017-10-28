@@ -5,8 +5,8 @@
  */
 package servlet;
 
-import metier.Membre;
-import dao.MembreDAO;
+import metier.Personne;
+import dao.PersonneDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -57,7 +57,7 @@ public class ConnexionServlet extends HttpServlet {
     String password = request.getParameter("password");
     try {
       // Faire appel au modèle
-      Membre membre = MembreDAO.getByLoginPassword(login, password);
+      Personne membre = PersonneDAO.getByLoginPassword(login, password);
       if (membre == null) { // Utilisateur pas connu
         // AJouter un post-it loginMsg comme message d'erreur
         request.setAttribute("loginMsg", "Utilisateur inconnu ou mot de passe erronné");

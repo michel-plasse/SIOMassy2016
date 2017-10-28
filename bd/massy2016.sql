@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS personne (
   code_postal VARCHAR(5) NOT NULL,
   ville VARCHAR(45) NOT NULL,
   password VARCHAR(45) NOT NULL,
-  telephone INT NOT NULL,
+  telephone VARCHAR(45) NOT NULL,
   photo VARCHAR(45) NULL,
   est_admin TINYINT(1) NOT NULL DEFAULT false,
   PRIMARY KEY (id_personne))
@@ -43,7 +43,7 @@ ENGINE = InnoDB$$
 
 CREATE TABLE IF NOT EXISTS formation (
   id_formation INT NOT NULL AUTO_INCREMENT,
-  intitule VARCHAR(45) NOT NULL,
+  intitule VARCHAR(100) NOT NULL,
   description VARCHAR(255) NOT NULL,
   PRIMARY KEY (id_formation))
 ENGINE = InnoDB$$
@@ -94,6 +94,7 @@ ENGINE = InnoDB$$
 CREATE TABLE IF NOT EXISTS bilan (
   id_bilan INT NOT NULL AUTO_INCREMENT,
   id_session INT NOT NULL,
+  date_effet DATE NOT NULL,
   PRIMARY KEY (id_bilan),
   INDEX fk_bilan_session1_idx (id_session ASC),
   CONSTRAINT fk_bilan_session1
@@ -238,7 +239,7 @@ ENGINE = InnoDB$$
 CREATE TABLE IF NOT EXISTS equipe (
   id_equipe INT NOT NULL AUTO_INCREMENT,
   id_projet INT NOT NULL,
-  date_creation DATETIME NOT NULL,
+  date_creation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id_equipe),
   INDEX fk_equipe_projet_multi_equipe1_idx (id_projet ASC),
   CONSTRAINT fk_equipe_projet
@@ -337,7 +338,32 @@ CREATE TABLE IF NOT EXISTS membre (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB$$
 
+---- Vue Stagiaire
 
+DROP VIEW IF EXISTS stagiaire $$
+CREATE VIEW stagiaire AS
+    SELECT 
+        p.id_personne AS id_personne,
+        nom,
+        prenom,
+        mail,
+        adresse,
+        code_postal,
+        ville,
+        password,
+        telephone,
+        photo,
+        est_admin,
+        id_session,
+        date_candidature
+    FROM
+        candidature c
+		INNER JOIN personne p 
+		ON p.id_personne = c.id_membre
+    WHERE
+        id_etat_candidature = 2 $$
+
+---- Fin vue
 
 
 DROP PROCEDURE IF EXISTS reset_massy2016 $$
@@ -386,13 +412,39 @@ BEGIN
     -- contraintes d'intégrité référentielles : si A fait référence à B,
     -- insérer B avant A.
     -- Exemple pour la syntaxe :
-    INSERT INTO personne
+		INSERT INTO personne
     (id_personne, nom, prenom, mail, adresse, code_postal, ville, password, telephone, photo, est_admin) VALUES
-    ('1', 'BANKA', 'Joel', 'bankajoel@yahoo.fr', 'Ciel', '11510', 'Royaume', 'pipi', '0614787928', 'www.miroire.fr', '1');
-    ('2', 'GUIRASSI', 'Fode', 'sisi-senegal@gmail.com', '3, rue bidon', '95450', 'JeCestPas', '123', '0666835455', 'unephoto', '1');
-    ('3', 'EFEKELE', 'Samuel', 'chacha@gmail.com', '2, rue du poulet-riz', '88600', 'JeuSaitPâs', 'Efekele+1', '0684556678', 'uneimage', '1');
-    ('4', 'RODRIGUO', 'Bilanthini', 'Bilan@hotmail.fr', '55, bv de rien', '96700', 'JeScaisTjrPas', 'BilanDeCompetences', '0796451731', 'unefoto', '1');
-    ('5', 'BOISSEAU', 'Jordan', 'Jordan@mail.com', '3 bis, rue du gars gentil', '91000', 'JaiPasDidée', '159', '0700700666', 'UnBeauPoster', '1');
+    (1, 'BANKA', 'Joel', 'bankajoel@yahoo.fr', '7 rue de chateau deau', '91130', 'Ris-Orangis', 'pipi', '06 14 78 79 28', null, 0),
+    (2, 'GUIRASSI', 'Fode', 'sisi-senegal@gmail.com', '1 rue Léon Blum', '91130', 'Ris-Orangis', '123', '06 66 83 54 55', null, 0),
+    (3, 'EFEKELE', 'Samuel', 'chacha@gmail.com', '17 avenue Auguste Plat', '91130', 'Ris-Orangis', 'Efekele+1', '06 84 55 66 78', null, 0),
+    (4, 'RODRIGUO', 'Bilanthini', 'bilan@greta.fr', '10 rue de Bretagne', '91130', 'Ris-Orangis', 'mapoule', '07 96 45 17 31', null, 0),
+    (5, 'BOISSEAU', 'Jordan', 'jordan@mail.com', '1 avenue de la gare', '91130', 'Ris-Orangis', '159', '07 00 70 06 66', null, 0),
+    (6, 'MOREAU', 'Vincent', 'vince@greta.fr', '13 rue de Girouise', '91360', 'Épinay-sur-Orge', '321', '06 35 84 96 32', null, 0),
+    (7, 'ROUGIER', 'Dovan', 'dovan@agriote.fr', '15 rue Dieu', '75010', 'Paris', 'password', '01 23 45 67 89', null, 1),
+    (8, 'PERRIN', 'Sandrine', 'sancrine@greta.fr', '7 place du parc aux lièvres' , '91000', 'Evry', '753', '06 31 25 57 74', null, 0),
+    (9, 'MBENDA', 'Lionel', 'lionel@greta.fr', '10 allée de bonhomme en pierre', '91000', 'Evry', '357', '07 48 63 14 55', null, 0),
+    (10, 'MARC', 'Mickael', 'mickael@agriote.fr', '24 rue de la futaie', '91090', 'Lisses', '951', '07 47 55 12 18 13', null, 0),
+    (11, 'JOYEUX', 'Jerome', 'jerome@agriote.fr', '9 rue de Vlaminck', '91350', 'Grigny', 'mdp', '07 37 45 45 11', null, 0),
+    (12, 'MOSHINE', 'Hajar', 'hajar@greta.fr', '10 rue Léonard De Vinci', '91090', 'Lisses', 'motdepasse', '06 99 88 13 13', null, 0),
+    (13, 'BOURDET', 'Eric', 'eric@gmail.com', '5 rue Saint Exupéry', '91070', 'Bondoufle', 'pwd', '06 13 54 78 96', null, 0),
+    (14, 'GROLEAS', 'Brigitte', 'brigitte@agriote.fr', '6 rue Jean Meremoz', '91080', 'Courcouronnes', 'netbeans', '06 96 85 51 43', null, 1),
+    (15, 'PLASSE', 'Michel', 'michel@greta.fr', '9 rue des Petits Champs', '91100', 'Villabé', 'eclipse', '06 57 16 83 57', null, 1),
+    (16, 'COURTO', 'Blanche', 'blanche@greta.fr', '5 rue du Louvre', '75001', 'Paris', 'voltaire', '07 88 33 45 14', null, 0),
+    (17, 'DUGLAND', 'Sebastien', 'sebastien@greta.fr', '11 avenue de Breteuil', '75007', 'Paris', 'mdp123', '07 54 14 37 86', null, 0),
+    (18, 'DUPOND', 'Dupond', 'dupond@greta.fr', '15 rue Legendre', '75017', 'Paris', 'dupontpwd', '06 68 97 31 16', null, 0),
+    (19, 'TIN', 'Tin', 'tintin@gmail.com', '2 rue de Belleville', '75020', 'Paris', 'milou', '06 54 57 73 24', null, 0),
+    (20, 'HANOUNA', 'Cyril', 'cyril@greta.fr', '9 rue du Chevaleret', '75013' ,'Paris', 'baba', '06 13 91 67 35', null, 0),
+    (21, 'LOUVIN', 'Gérard', 'gérard@agriote.fr', '7 rue Hardy', '78000', 'Versailles', 'tulavus', '06 81 68 15 73', null, 0),
+    (22, 'COMBAL', 'Camille', 'camille@gmail.com', '8 rue Saint-Louis', '78300', 'Poissy', 'cyrilhanouna', '07 13 91 35 67', null, 0),
+    (23, 'DEPP', 'Johnny', 'johnny@greta.fr', '17 rue Edouard Robert', '91290', 'Arpajon', 'rhum', '06 97 64 31 28', null, 0),
+    (24, 'BENATTIA', 'Nabilla', 'nabilla@free.fr', '23 rue Victor Hugo', '91290', 'Arpajon', 'allo', '06 11 22 33 44', null, 0),
+    (25, 'DIESIEL', 'Vin', 'vin@gmail.com', '3 rue Docteur Roux', '91160', 'Longjumeau', 'babysitor', '07 31 46 79 58', null, 0),
+    (26, 'KABAN', 'Joel', 'joelk@gmail.com', '10 Rue du Heaume', '78660', 'Ablis', 'docteur', '01 69 38 38 54', null, 0),
+    (27, 'DELARTE', 'Platini', 'platini@gmail.com', '5 bis avenue Maurice Berteaux','78570', 'ANDRESY', 'doc', '01 69 47 58 90', null, 0),
+    (28, 'ANGE', 'Gabriel', 'gabriel@gmail.com', '40 rue Division Leclerc', '78830', 'Bonnelles', 'gabi', '01 69 36 94 94', null, 0),
+    (29, 'MCEE', 'Maxwell', 'maxwell@gmail.com', '5 rue Alexis Carrel', '78530', 'Buc', 'nonmaisattendez', '01 69 47 73 57', null, 0),
+    (30, 'HALLIWELL', 'Phoebe', 'charmed@gmail.com', '14 avenue Guy de Maupassant', '78000', 'Chatou', 'balthazar', '01 69 30 19 57', null, 0),
+    (31, 'ADMIN', 'admin', 'admin@mail.com', '1 boulevard de ladministrateur', '10020','Admin', 'admin', '01 69 00 00 00', null, 1);
     INSERT INTO formation
     (id_formation, intitule, description) VALUES
     (1,"BTS Assistance Technique d'Ingénieur","Le titulaire de ce diplôme peut exercer des fonctions très variées :études, organisation, animation et formation, recherche et développement, production, gestion de production, gestion commerciale"),
@@ -444,25 +496,187 @@ BEGIN
     (11,6);
     INSERT INTO session
     (id_session, id_formation, date_debut, date_fin, nb_places, date_debut_inscription, date_fin_inscription) VALUES
-    (1, 4, 2016-06-17, 2017-06-12, 15, 2016-05-01, 2016-06-02),
-    (2, 6, 2016-08-22, 2016-10-18, 12, 2016-07-16, 2016-08-11),
-    (3, 1, 2016-10-10, 2017-09-15, 20, 2016-09-01, 2016-09-29),
-    (4, 5, 2016-11-25, 2017-11-09, 23, 2016-10-19, 2016-11-15),
-    (5, 2, 2017-01-05, 2017-11-02, 18, 2016-11-29, 2016-12-20),
-    (1, 3, 2017-02-10, 2017-12-20, 14, 2017-01-14, 2017-02-01);
+    (1, 4, '2016-06-17', '2017-06-12', 15, '2016-05-01', '2016-06-02'),
+    (2, 6, '2016-08-22', '2016-10-18', 12, '2016-07-16', '2016-08-11'),
+    (3, 1, '2016-10-10', '2017-09-15', 20, '2016-09-01', '2016-09-29'),
+    (4, 5, '2016-11-25', '2017-11-09', 23, '2016-10-19', '2016-11-15'),
+    (5, 2, '2017-01-05', '2017-11-02', 18, '2016-11-29', '2016-12-20'),
+    (6, 3, '2017-02-10', '2017-12-20', 14, '2017-01-14', '2017-02-01');
+
+ INSERT INTO etat_candidature
+    (id_etat_candidature, intitule) VALUES
+    (1, "en attente"),
+    (2, "validée"),
+    (3, "refusée");
+    
+    INSERT INTO formateur
+    (id_formateur,site_web)VALUES
+    (14,"www.mplasse.com"),
+    (15,"www.algob.fr"),
+    (23,""),
+    (24,""),
+    (18,"");
+    
+    INSERT INTO intervenant
+    (id_module, id_personne) VALUES
+    (1,14),
+    (2,15),
+    (3,23),
+    (4,24),
+    (6,23),
+    (9,14),
+    (9,15),
+    (5,18);
+    
+    INSERT INTO seance
+    (id_seance, id_module, id_session, id_formateur, jour) VAlUES
+    (1,9,4,14,'2016-11-25'),
+    (2,9,4,15,'2016-11-26'),
+    (3,3,3,23,'2016-11-25'),
+    (4,5,6,18,'2017-02-13'),
+    (5,4,5,24,'2017-01-06');
+    
+    INSERT INTO projet
+    (id_projet,id_formateur,id_session,nom,description,date_creation,date_fin)VALUES
+    (1,14,1,"Project Code source","Le but de ce projet c'est de tester github",'2016-09-12','2016-10-15 17:00'),
+    (2,14,3,"Le réseau","Ce projet consiste à créer un réseau social par équipe",'2016-12-12','2017-02-15 18:30'),
+    (3,24,1,"Communication","Savoir communiquer en bon français",'2017-03-12','2017-04-22 13:30');
+    
+    INSERT INTO bilan 
+    (id_bilan,id_session,date_effet) VALUES
+    (1,1,'2016-12-01'),
+    (2,1,'2017-06-01'),
+    (3,2,'2016-12-22'),
+    (4,2,'2017-12-24');
+
+    INSERT INTO bulletin
+    (id_personne, id_bilan, commentaire) VALUES
+    (1,1,"Joel devrait s'investir plus en classe plutot que de s'occuper du PSG"),
+    (2,1,"Fodé est un élève très investit"),
+    (3,1,"Samuel fournit beaucoup d'effort! Continuez ainsi"),
+    (4,1,"Bilanthini est l'élève la plus agréable avec laquelle il m'a été donné de travailler");
+    
+     INSERT INTO evaluation
+    (id_evaluation,id_session,id_module,id_formateur,date_effet,commentaire)VALUES
+    (1,1,1,18,'2016-03-10',"apportez vos calculettes !"),
+    (2,2,2,23,'2016-04-15',"révisez vos schéma structurels "),
+    (3,3,3,24,'2016-05-18',"U=RxI"),
+    (4,4,4,15,'2016-06-25',"révisez les suites "),
+    (5,5,5,23,'2017-02-05',"écriture perso tout les auteurs s'accordetn à dire..."),
+    (6,6,6,15,'2017-05-06',"bon courage"),
+    (7,1,7,18,'2016-04-12',"calm down !!! "),
+    (8,1,9,14,'2016-03-20',"révisez le JEE"),
+    (9,1,10,23,'2016-03-10',"révisez les contrats de travail");
+
+INSERT INTO candidature
+    (id_membre,id_session,id_etat_candidature,date_candidature) VALUES
+    (1,1,2,'2016-02-17'),
+    (2,2,1,'2016-03-20'),
+    (3,3,2,'2016-05-12'),
+    (4,4,2,'2016-06-12'),
+    (5,5,3,'2016-11-10'),
+    (6,6,3,'2016-10-15'),
+    (7,1,1,'2016-03-16'),
+    (8,2,2,'2016-05-18'),
+    (9,3,3,'2016-05-18'),
+    (10,4,1,'2016-07-02'),
+    (11,5,2,'2016-01-20'),
+    (12,6,3,'2016-09-05'),
+    (13,1,1,'2016-03-28'),
+    (14,2,2,'2016-04-21'),
+    (15,3,3,'2016-05-20'),
+    (16,4,1,'2016-06-17'),
+    (17,5,2,'2016-08-13'),
+    (18,6,3,'2016-09-01'),
+    (19,1,1,'2016-10-20');
+
+INSERT INTO equipe
+    (id_equipe, id_projet) VALUES 
+    ('1', '1'),
+    ('2', '1'),
+    ('3', '1'),
+    ('4', '2'),
+    ('5', '2'),
+    ('6', '3');
+
+INSERT INTO membre 
+    (id_equipe, id_personne, est_createur) VALUES 
+    ('1', '1', '1'),
+    ('1', '2', '0'),
+    ('1', '3', '0'),
+    ('2', '4', '1'),
+    ('2', '5', '0'),
+    ('2', '6', '0'),
+    ('3', '7', '1'),
+    ('4', '2', '1'),
+    ('4', '5', '0'),
+    ('4', '7', '0'),
+    ('5', '9', '1'),
+    ('6', '1', '1'),
+    ('6', '6', '0');
+
+INSERT INTO note
+    (id_evaluation, id_personne, note) VALUES
+    (1, 1, 10),
+    (1, 2, 15),
+    (1, 3, 12),
+    (1, 4, 8),
+    (1, 5, 17),
+    (1, 6, 19),
+    (1, 7, 10),
+    (2, 1, 0),
+    (2, 2, 10),
+    (2, 3, 12),
+    (2, 4, 13),
+    (2, 5, 10),
+    (2, 6, 14),
+    (2, 7, 14),
+    (3, 1, 17),
+    (3, 2, 0),
+    (3, 3, 10),
+    (3, 4, 0),
+    (3, 5, 8),
+    (3, 6, 10),
+    (3, 7, 17),
+    (4, 8, 10),
+    (4, 9, 9),
+    (4, 10, 17),
+    (4, 11, 5),
+    (4, 12, 11),
+    (5, 8, 13),
+    (5, 9, 12),
+    (5, 10, 10),
+    (5, 11, 9),
+    (5, 12, 13);
+
+INSERT INTO ligne_bulletin
+(id_formateur, commentaire, id_personne, id_bilan, id_module) VALUES 
+(14,"Poursuivez vos efforts",1,1,9),
+(15,"Coninuez ainsi",1,1,2);
+
+
+   
+    
     -- Valider la transaction
 	  COMMIT;
 	END;
 END$$
 
 CALL reset_massy2016()$$
+ --- Créer l'utilisateur
+ /** Supprime l'utilisateur avant de le créer */
+ GRANT USAGE ON siomassy2016.* TO 'user_massy2016'@'localhost' IDENTIFIED BY 'pwd_massy2016'$$
+ DROP USER 'user_massy2016'@'localhost'$$
+ /** Creer l'utilisateur et lui donner tous les droits */
+ CREATE USER 'user_massy2016'@'localhost' IDENTIFIED BY 'pwd_massy2016'$$
+ GRANT ALL ON siomassy2016.* TO 'user_massy2016'@'localhost'$$
+ GRANT SELECT ON mysql.proc TO 'user_massy2016'@'localhost'$$
+ 
+-- Declencheur equipe--
 
--- Créer l'utilisateur
-/** Supprime l'utilisateur avant de le créer */
-GRANT USAGE ON siomassy2016.* TO 'user_massy2016'@'localhost' IDENTIFIED BY 'pwd_massy2016'$$
-DROP USER 'user_massy2016'@'localhost'$$
-/** Creer l'utilisateur et lui donner tous les droits */
-CREATE USER 'user_massy2016'@'localhost' IDENTIFIED BY 'pwd_massy2016'$$
-GRANT ALL ON siomassy2016.* TO 'user_massy2016'@'localhost'$$
-GRANT SELECT ON mysql.proc TO 'user_massy2016'@'localhost'$$
-
+DROP TRIGGER IF EXISTS after_create_equipe $$
+CREATE TRIGGER after_create_equipe AFTER INSERT
+ON equipe FOR EACH ROW
+BEGIN
+	INSERT INTO membre VALUES (NEW.id_equipe, 1, 1);
+END $$
